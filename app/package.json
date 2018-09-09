@@ -1,0 +1,19 @@
+{
+  "name": "system-delight",
+  "productName": "SystemDelight",
+  "version": "0.0.1",
+  "description": "Process and systemd manager for Linux environments",
+  "main": "./main.prod.js",
+  "author": {
+    "name": "Jason Hicks",
+    "email": "jaszhix@gmail.com",
+    "url": "https://github.com/jaszhix"
+  },
+  "scripts": {
+    "electron-rebuild": "node -r babel-register ../internals/scripts/ElectronRebuild.js",
+    "postinstall": "npm run electron-rebuild"
+  },
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+  }
+}
