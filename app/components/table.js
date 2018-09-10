@@ -307,7 +307,7 @@ export class Table extends React.Component {
       this.dragCount = 0;
       let {widths, view} = this.props.s;
       widths[view][th.innerText.toLowerCase().split('|')[0]] = adjustWidth;
-      setTimeout(() => this.props.s.set({widths}, () => this.adjustHeaderWidth()), 15);
+      this.props.s.set({widths}, () => this.adjustHeaderWidth());
     }
     this.lastWidth = width;
   }
