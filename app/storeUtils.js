@@ -63,6 +63,8 @@ export class BaseStoreContainer extends React.Component {
     let Window = remote.getCurrentWindow();
     Window.on('maximize', () => setTimeout(() => this.state.trigger('resize'), 20));
     Window.on('unmaximize', () => setTimeout(() => this.state.trigger('resize'), 20));
+    Window.on('resize', () => setTimeout(() => this.state.trigger('resize'), 20));
+    this.handleResize();
   }
   componentWillUnmount = () => {
     window.removeEventListener('resize', this.handleResize);
