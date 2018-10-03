@@ -31,7 +31,7 @@ class Toolbar extends React.Component {
             type: 'info',
             buttons: [],
             title: 'System Delight',
-            message: 'v0.0.1',
+            message: 'v0.0.2',
             detail: `
 Copyright (C) 2018 Jason Hicks and Contributors
 
