@@ -1,30 +1,19 @@
-import {remote} from 'electron';
 import React from 'react';
 import {render} from 'react-dom';
 import {AppContainer} from 'react-hot-loader';
-import Root from './root';
 import {BaseStoreContainer} from './storeUtils';
 import getTheme from 'electron-gtk-theme';
 //import './styles/flexbodgrid2.css';
 import './app.global.css';
 
-getTheme({
-  outputPath: __dirname,
-}).then(function(themeData) {
-  window.iconPaths = themeData.iconPaths;
-  render(
-    <AppContainer>
-      <BaseStoreContainer>
-        <Root />
-      </BaseStoreContainer>
-    </AppContainer>,
-    document.getElementById('root')
-  );
-});
+window.iconPaths = [];
 
-if (module.hot) {
-  module.hot.accept('./root', () => {
-    const NextRoot = require('./root'); // eslint-disable-line global-require
+const init = function() {
+  const NextRoot = require('./root').default;
+  getTheme({
+    outputPath: __dirname,
+  }).then(function(themeData) {
+    window.iconPaths = themeData.iconPaths;
     render(
       <AppContainer>
         <BaseStoreContainer>
@@ -34,6 +23,12 @@ if (module.hot) {
       document.getElementById('root')
     );
   });
+};
+
+init();
+
+if (module.hot) {
+  module.hot.accept('./root', () => init());
 }
 
 (function(window) {
