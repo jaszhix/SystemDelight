@@ -7,12 +7,13 @@ import {each} from './utils';
 const state = initStore({
   interval: 1000,
   searchValue: '',
-  view: 'processes',
+  view: 'kernels',
   ready: false,
   desktopData: [],
   enabledColumns: {
     processes: ['name', 'usage', 'vmrss', 'threads', 'nice', 'pid', 'state'],
-    services: ['name', 'description', 'file', 'active', 'startup', 'started']
+    services: ['name', 'description', 'file', 'active', 'startup', 'started'],
+    kernels: ['name', 'date', 'installed']
   },
   widths: {
     services: {
@@ -31,6 +32,11 @@ const state = initStore({
       nice: 75,
       pid: 70,
       state: 70
+    },
+    kernels: {
+      name: 400,
+      date: 200,
+      installed: 80
     }
   }
 });

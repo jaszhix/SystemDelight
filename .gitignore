@@ -54,3 +54,4 @@ app/electron-gtk-theme
 ref_files
 /processManager.code-workspace
 /app/gtk-generated.css
+/SystemDelight.code-workspace

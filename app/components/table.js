@@ -118,7 +118,7 @@ export class TableRow extends React.Component {
     cleanUp(this);
   }
   render() {
-    let {row, columns, className, onClick, onContextMenu, onMouseEnter, onMouseLeave, r, keyValue, tree, widths} = this.props;
+    let {row, columns, className, onClick, onContextMenu, onMouseEnter, onMouseLeave, r, keyValue, tree, widths, iconsEnabled} = this.props;
     return (
       <tr
       id={`row-${keyValue}`}
@@ -141,12 +141,12 @@ export class TableRow extends React.Component {
                 className={`icon-${row.collapsed ? 'plus' : 'minus'}2`}
                 onMouseEnter={onMouseEnter}
                 onMouseLeave={onMouseLeave} /> : null}
-              {column === 'name' ? <Img name={row.name} /> : null}
+              {iconsEnabled && column === 'name' ? <Img name={row.name} /> : null}
 
               {column === 'vmrss' ? formatBytes(row[column])
               : typeof row[column] === 'boolean' ?
                 <i className={`icon-${row[column] ? 'checkmark2' : 'cross3'}`} />
-              : column === 'started' ? moment(row.started).format('M/D/YY LTS') : row[column]}
+              : column === 'started' || column === 'date' ? moment(row[column]).format('M/D/YY LTS') : row[column]}
             </td>
           );
         })}
@@ -170,6 +170,7 @@ export class Table extends React.Component {
     columns: [],
     order: '',
     direction: 'desc',
+    iconsEnabled: true
   };
   constructor(props) {
     super(props);
@@ -323,7 +324,7 @@ export class Table extends React.Component {
   render() {
     let {searchValue, widths, view} = this.props.s;
     widths = widths[view];
-    let {itemList, columns, order, direction, keyBy, searchBy, tree, onColumnClick, onRowClick, onRowContextMenu, onIconMouseEnter, onIconMouseLeave} = this.props;
+    let {itemList, columns, order, direction, keyBy, searchBy, tree, iconsEnabled, onColumnClick, onRowClick, onRowContextMenu, onIconMouseEnter, onIconMouseLeave} = this.props;
     let {range} = this.state;
     if (itemList.length === 0) {
       return null;
@@ -374,6 +375,7 @@ export class Table extends React.Component {
                 return (
                   <TableRow
                   enabled={isVisible}
+                  iconsEnabled={iconsEnabled}
                   key={row[keyBy]}
                   keyValue={row[keyBy]}
                   row={row}

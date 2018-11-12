@@ -2,24 +2,12 @@ import {remote} from 'electron';
 import React from 'react';
 import {hot} from 'react-hot-loader';
 import {orderBy, pick, cloneDeep} from 'lodash';
-import {each, map, find, findIndex, filter, cleanUp} from '../utils';
+import {each, find, findIndex, filter, cleanUp} from '../utils';
 import {listUnits, systemCtl} from '../systemctl';
 import {withState} from '../storeUtils';
 import {Table} from './table';
-const {Menu, dialog} = remote;
 
-let flatTree = [];
-const walkTree = function(arr, depth = 0) {
-  map(arr, function(p, i) {
-    p.depth = depth;
-    flatTree.push(p);
-    p.hasChildren = p.children && p.children.length > 0;
-    if (p.hasChildren && !p.collapsed) {
-      walkTree(p.children, depth + 8);
-      p.children = null;
-    }
-  });
-}
+const {Menu, dialog} = remote;
 
 const handleActionInfo = function(err, action, unit) {
   if (!err) {
@@ -43,7 +31,6 @@ class ServicesTable extends React.Component {
       order: 'name',
       direction: 'asc',
     };
-    this.orderCount = 0;
 
     this.mainWindow = remote.getCurrentWindow();
 

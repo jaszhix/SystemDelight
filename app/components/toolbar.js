@@ -10,7 +10,8 @@ const {Menu, dialog, app, getCurrentWindow} = remote;
 const toolbarButtons = [
   'processes',
   'resources',
-  'services'
+  'services',
+  'kernels'
 ];
 
 class Toolbar extends React.Component {
