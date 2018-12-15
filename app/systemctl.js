@@ -93,3 +93,21 @@ export const systemCtl = function(action, unit, cb) {
     cb(err, code);
   });
 };
+
+export const blame = function(cb) {
+  run('systemd-analyze blame', function(err, stdout, code) {
+    if (err || code !== 0) {
+      cb(err);
+    }
+    let lines = stdout.trim().split(os.EOL);
+    for (let i = 0; i < lines.length; i++) {
+      let [time, unit] = lines[i].trim().split(' ');
+
+      if (time.match(/\ds$/)) time = parseInt(time.replace(/s$/, '')) * 1000;
+      else time = parseInt(time.replace(/ms$/, ''));
+
+      lines[i] = {time, unit};
+    }
+    cb(err, lines);
+  });
+};

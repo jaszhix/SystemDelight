@@ -1,9 +1,9 @@
 import {remote} from 'electron';
 import React from 'react';
 import {hot} from 'react-hot-loader';
-import {orderBy, pick, cloneDeep} from 'lodash';
+import {orderBy, pick} from 'lodash';
 import {each, find, findIndex, filter, cleanUp} from '../utils';
-import {listUnits, systemCtl} from '../systemctl';
+import {listUnits, systemCtl, blame} from '../systemctl';
 import {withState} from '../storeUtils';
 import {Table} from './table';
 
@@ -30,6 +30,7 @@ class ServicesTable extends React.Component {
       selected: [],
       order: 'name',
       direction: 'asc',
+      initTimes: []
     };
 
     this.mainWindow = remote.getCurrentWindow();
@@ -143,6 +144,17 @@ class ServicesTable extends React.Component {
     }, 6000);
   }
   getData = () => {
+    if (!this.init) {
+      this.init = true;
+      blame((err, initTimes) => {
+        this.setState({initTimes}, () => this.listUnits());
+      });
+      return;
+    }
+    this.listUnits();
+  }
+
+  listUnits = () => {
     console.time('1')
     listUnits((err, units) => {
       if (err) {
@@ -150,11 +162,7 @@ class ServicesTable extends React.Component {
         return;
       }
       console.timeEnd('1');
-      if (!this.init) {
-        this.init = true;
-        console.log(cloneDeep(units))
-      }
-      let {order, direction} = this.state;
+      let {order, direction, initTimes} = this.state;
       let {view, enabledColumns} = this.props.s;
 
       each(units, (ps, i) => {
@@ -163,6 +171,11 @@ class ServicesTable extends React.Component {
         if (!refProc) {
           return;
         }
+
+        let refInitTime = find(initTimes, (time) => time.unit === ps.name);
+        if (refInitTime) units[i].init = refInitTime.time;
+        else units[i].init = 0;
+
         units[i].selected = refProc.selected;
       });
 

@@ -274,8 +274,3 @@ export const getClockTick = function(cb) {
     cb(parseInt(stdout.trim()));
   });
 }
-/* console.time(1)
-getData(function(data) {
-  console.log(data)
-  console.timeEnd(1);
-}) */

@@ -43,7 +43,8 @@ export const labelMap = {
   state: 'Status',
   threads: 'Threads',
   usage: 'CPU Usage',
-  vmrss: 'Memory'
+  vmrss: 'Memory',
+  init: 'Init Time'
 }
 
 export const coreCount = os.cpus().length;

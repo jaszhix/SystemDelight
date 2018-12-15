@@ -146,7 +146,8 @@ export class TableRow extends React.Component {
               {column === 'vmrss' ? formatBytes(row[column])
               : typeof row[column] === 'boolean' ?
                 <i className={`icon-${row[column] ? 'checkmark2' : 'cross3'}`} />
-              : column === 'started' || column === 'date' ? moment(row[column]).format('M/D/YY LTS') : row[column]}
+              : column === 'started' || column === 'date' ? moment(row[column]).format('M/D/YY LTS')
+              : column === 'init' ? `${moment.duration(row[column]).asSeconds()}s` : row[column]}
             </td>
           );
         })}

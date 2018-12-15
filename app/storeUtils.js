@@ -12,7 +12,7 @@ const state = initStore({
   desktopData: [],
   enabledColumns: {
     processes: ['name', 'usage', 'vmrss', 'threads', 'nice', 'pid', 'state'],
-    services: ['name', 'description', 'file', 'active', 'startup', 'started'],
+    services: ['name', 'description', 'file', 'active', 'startup', 'started', 'init'],
     kernels: ['name', 'date', 'installed']
   },
   widths: {
@@ -22,7 +22,8 @@ const state = initStore({
       file: 370,
       active: 50,
       startup: 125,
-      started: 120
+      started: 150,
+      init: 75
     },
     processes: {
       name: 295,
