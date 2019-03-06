@@ -4019,10 +4019,10 @@ electron-download@^4.1.0:
     semver "^5.4.1"
     sumchecker "^2.0.2"
 
-electron-gtk-theme@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/electron-gtk-theme/-/electron-gtk-theme-0.4.0.tgz#04a03368dffb64356a7dc79b9d23e314c8facd29"
-  integrity sha512-QxLCkwXExl0e1FDHb/cR2GIjxg7med9Wxwmkpvuoc855Wp3vXgMz5DIcHXaud99xBohzX++gsQpfJIfZ0xj6Lg==
+electron-gtk-theme@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/electron-gtk-theme/-/electron-gtk-theme-0.4.1.tgz#9283a72418cfbd7ee5b43499b091864c35621eba"
+  integrity sha512-vUCFuh2ORi7G1c2SZzx+SnE4PDezyOZUmI3ZSeslLZmnIQBk5Nf9ExJH4f43J2WAAlCrAllKTCIMbD4TKPHu/A==
   dependencies:
     balanced-match "^1.0.0"
     color-convert "^1.9.1"

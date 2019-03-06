@@ -1,7 +1,7 @@
 {
   "name": "system-delight",
   "productName": "SystemDelight",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Process and systemd manager for Linux environments",
   "scripts": {
     "build": "concurrently \"npm run build-main\" \"npm run build-renderer\"",
@@ -163,7 +163,7 @@
     "desktop-env": "^3.0.0",
     "devtron": "^1.4.0",
     "electron-debug": "^2.0.0",
-    "electron-gtk-theme": "^0.4.0",
+    "electron-gtk-theme": "^0.4.1",
     "flexboxgrid2": "^7.2.1",
     "himalaya": "^1.1.0",
     "lodash": "^4.17.11",
