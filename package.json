@@ -166,7 +166,7 @@
     "electron-gtk-theme": "^0.4.1",
     "flexboxgrid2": "^7.2.1",
     "himalaya": "^1.1.0",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.13",
     "moment": "^2.23.0",
     "postcss-import": "^12.0.1",
     "prop-types": "^15.6.2",
